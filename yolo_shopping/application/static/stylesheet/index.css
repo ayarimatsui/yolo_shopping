@@ -1,0 +1,9 @@
+.container {
+    height: 100vm;
+}
+
+.yolo-item-list {
+    flex-direction: column-reverse !important;
+    max-height: 80vh;
+    overflow: scroll;
+}

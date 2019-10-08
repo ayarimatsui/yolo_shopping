@@ -1,0 +1,54 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+  YOLO Shopping
+{% endblock %}
+
+{% block styles %}
+  {{super()}}
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheet/index.css') }}">
+{% endblock %}
+
+{% block navbar %}
+  <header>
+    <!--Headerー-->
+    <nav class="navbar navbar-expand navbar-light bg-light">
+      YOLO Shopping
+    </nav>
+  </header>
+{% endblock %}
+
+<body>
+{% block content %}
+  {{ super() }}
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-xs-12 col-md-9">
+        <img src="{{ url_for('video_capture') }}" width="100%" />
+      </div>
+
+      <div class="col-xs-12 col-md-3">
+        <h3>Items</h3>
+        <div class="list-group yolo-item-list">
+          {% for items in camera %}
+            {% for item in items['objects'] %}
+            <a href="http://www.amazon.co.jp/gp/search/?field-keywords={{ item['label'] }}" class="list-group-item list-group-item-action" target="_blank">
+              <h4>{{ item['label'] }}</h4>
+              <span>Sore: {{ item['score'] }}</span>
+            </a>
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
+</body>
+
